@@ -17,7 +17,7 @@ public class Forquilla {
         lock.unlock();
     }
 
-    public int getNumero() {
+    public int getNum() {
         return numero;
     }
 }

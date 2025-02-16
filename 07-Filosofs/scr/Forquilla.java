@@ -1,23 +1,23 @@
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Forquilla {
-    private int num_fork;
-    private boolean enUs;
+    private final int numero;
+    private final Lock lock = new ReentrantLock();
 
-    public Forquilla(int num_fork, boolean enUs) {
-        this.num_fork = num_fork;
-        this.enUs = enUs;
+    public Forquilla(int numero) {
+        this.numero = numero;
     }
-    public Forquilla(){}
 
-    public int getNum_fork() {return num_fork;}
-    public boolean isEnUs() {return enUs;}
+    public boolean agafar() {
+        return lock.tryLock();
+    }
 
-    public void setNum_fork(int num_fork) {
-        this.num_fork = num_fork;
+    public void deixar() {
+        lock.unlock();
     }
-    public void setEnUs(boolean enUs) {
-        this.enUs = enUs;
+
+    public int getNumero() {
+        return numero;
     }
-    
-    public void agafaForquilla(){this.enUs = true;}
-    public void deixaForquilla(){this.enUs = false;}
 }

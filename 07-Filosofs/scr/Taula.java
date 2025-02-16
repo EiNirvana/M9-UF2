@@ -1,32 +1,29 @@
-public class Taula{
-    private static Forquilla[] forquilles;
-    private static Filosof[] comensals;
-    public static void main(String[] args){
-        for (int f = 0; f < 5; f++){
-            forquilles[f]= new Forquilla(f, false);
+public class Taula {
+    private final Filosof[] filosofs;
+    private final Forquilla[] forquilles;
+
+    public Taula(int numFilosofs) {
+        filosofs = new Filosof[numFilosofs];
+        forquilles = new Forquilla[numFilosofs];
+        for (int i = 0; i < numFilosofs; i++) {
+            forquilles[i] = new Forquilla(i);
         }
-        for(int i = 0; i < 4; i++){
-            if (i != 4){
-                comensals[i] = new Filosof(forquilles[i], forquilles[i + 1], 0, "fil" + i);
-            } else {
-                comensals[i] = new Filosof(forquilles[i], forquilles[0], 0, "fil" + i);
-            }
-            new Thread(comensals[i]).start();
+        for (int i = 0; i < numFilosofs; i++) {
+            Forquilla forquillaEsquerra = forquilles[i];
+            Forquilla forquillaDreta = forquilles[(i + 1) % numFilosofs];
+            filosofs[i] = new Filosof("Filòsof " + i, forquillaEsquerra, forquillaDreta);
         }
-        showTaula();
     }
 
-    public void cridarATaula(){
-
+    public void iniciarSopar() {
+        for (Filosof filosof : filosofs) {
+            new Thread(filosof).start();
+        }
     }
 
-    public static void showTaula(){
-        for(int i = 0; i < comensals.length; i++){
-            if (i != comensals.length){
-                System.out.print("Comensal:" + comensals[i] + " esq:" + i + " dret:" + (i+1));
-            } else {
-                System.out.print("Comensal:" + comensals[i] + " esq:" + i + " dret:" + 0);
-            }
-        }
+    public static void main(String[] args) {
+        int numFilosofs = 5; // Set the number of philosophers
+        Taula taula = new Taula(numFilosofs);
+        taula.iniciarSopar();
     }
 }

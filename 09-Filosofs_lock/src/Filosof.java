@@ -46,7 +46,7 @@ public class Filosof extends Thread {
     private void menjar() throws InterruptedException {
         fiGana = System.currentTimeMillis();
         gana = (fiGana - iniciGana) / 1000;
-        System.out.println("Filòsof " + id + " menja amb gana: " + gana + " segons.");
+        System.out.println("Filòsof " + id + " menja amb gana: " + gana);
         Thread.sleep(new Random().nextInt(1000) + 1000);
     }
 

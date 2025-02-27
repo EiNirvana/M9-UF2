@@ -21,13 +21,16 @@ public class Estanc extends Thread{
     public ArrayList<Paper> getPapers() {return papers;}
 
     //Cridar en nouSubministrament()
-    public void addTabac(Tabac tabac){
+    public void addTabac(){
+        Tabac tabac = new Tabac();
         tabacs.add(tabac);
     }
-    public void addLlumi(Llumi llumi){
+    public void addLlumi(){
+        Llumi llumi = new Llumi();
         llumis.add(llumi);
     }
-    public void addPaper(Paper paper){
+    public void addPaper(){
+        Paper paper = new Paper();
         papers.add(paper);
     }
 
@@ -52,16 +55,13 @@ public class Estanc extends Thread{
 
         switch (novaCompra) {
             case 0:
-                Tabac nouTabac = new Tabac();
-                addTabac(nouTabac);
+                addTabac();
                 break;
             case 1:
-                Llumi nouLlumi = new Llumi();
-                addLlumi(nouLlumi);
+                addLlumi();
                 break;
             case 2:
-                Paper nouPaper = new Paper();
-                addPaper(nouPaper);
+                addPaper();
                 break;
         }
 

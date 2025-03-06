@@ -24,14 +24,17 @@ public class Estanc extends Thread{
     public void addTabac(){
         Tabac tabac = new Tabac();
         tabacs.add(tabac);
+        System.out.println("Afegint Tabac");
     }
     public void addLlumi(){
         Llumi llumi = new Llumi();
         llumis.add(llumi);
+        System.out.println("Afegint Llumi");
     }
     public void addPaper(){
         Paper paper = new Paper();
         papers.add(paper);
+        System.out.println("Afegint Paper");
     }
 
     public void venTabac(){
@@ -69,10 +72,12 @@ public class Estanc extends Thread{
 
     public void tancarEstanc(){
         this.obert = false;
+        System.out.println("Estanc Tancat");
     }
 
     public void run(){
         try {
+            System.out.println("Estanc Obert");
             while (this.obert) {
                 nouSubministrament();
                 Thread.sleep(new Random().nextInt(1000) + 1000);
